@@ -9,6 +9,9 @@ const LINE =
 if ([...LINE].length > 159) {
   throw new Error(`apology is ${[...LINE].length} characters, over the 159 limit`);
 }
+if (LINE.includes("\n") || LINE.trim().length === 0) {
+  throw new Error("apology must be a single non-empty line");
+}
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", LINE, "utf8");
